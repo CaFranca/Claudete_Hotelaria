@@ -1,1 +1,1 @@
-# Claudete_Hotelaria
+Esta pagina é dedicada ao CaVibezz
