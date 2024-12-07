@@ -25,10 +25,16 @@
             // Recupera os dados dos hóspedes e reservas do localStorage
             let hospedes = JSON.parse(localStorage.getItem('hospedes')) || [];
             let reservas = JSON.parse(localStorage.getItem('reservas')) || [];
+            let frigobar = JSON.parse(localStorage.getItem('frigobar')) || [];
+            let frigobarExtra = 0
 
             // Encontra o hóspede pelo documento
+            for (let i = 0; i < frigobar.length; i++) {
+                if (hospedes[i].documento == documentoHospede) {
+                    frigobarExtra = frigobar[i].precoTotal
+                }
+            }
             const hospede = hospedes.find(h => h.documento === documentoHospede);
-
             if (hospede) {
                 // Filtra as reservas para o hóspede atual
                 const reservasDoHospede = reservas.filter(reserva => reserva.documentoHospede === hospede.documento);
@@ -53,7 +59,7 @@
                         detalhesPagamento += `<br><strong>Serviços:</strong><ul>`;
                         reserva.servicos.forEach(servico => {
                             detalhesPagamento += `
-                                <li>${servico.nome} - R$ ${servico.preco.toFixed(2)}</li>
+                                <li>${servico.nome} - R$ ${servico.preco}</li>
                             `;
                         });
                         detalhesPagamento += `</ul>`;
@@ -68,11 +74,11 @@
                 const totalPagar = reservasDoHospede.reduce((total, reserva) => {
                     const totalReserva = parseFloat(reserva.precoEstadia) + (reserva.servicos ? reserva.servicos.reduce((totalServico, servico) => totalServico + parseFloat(servico.preco), 0) : 0);
                     return total + totalReserva;
-                }, 0).toFixed(2);
+                }, 0);
 
                 detalhesPagamento += `
                     </ul>
-                    <h3>Total a pagar: R$ ${totalPagar}</h3>
+                    <h3>Total a pagar: R$ ${(totalPagar + frigobarExtra).toFixed(2)}</h3>
                 `;
 
                 document.getElementById('detalhes-pagamento').innerHTML = detalhesPagamento;
