@@ -6,180 +6,143 @@ let reservas = JSON.parse(localStorage.getItem('reservas')) || [];
 const listaHospedes = document.getElementById('lista-hospedes');
 
 // Função para exibir a lista de hóspedes
-function exibirHospedes(filtroNome = '', ordenacaoId = 'crescente', ordenacaoNome = 'crescente') {
-    // Limpa a lista atual
+function exibirHospedes(filtroNome = '', ordenacaoNome = 'crescente') {
     listaHospedes.innerHTML = '';
 
-    // Filtra hóspedes com base nos critérios
-    let filtrados = hospedes.filter(hospede => {
-        return filtroNome === '' || hospede.nome.toLowerCase().includes(filtroNome.toLowerCase());
-    });
+    // Faz uma cópia da lista de hóspedes para evitar alterações diretas
+    let listaFiltrada = [...hospedes];
 
-    // Ordena os hóspedes filtrados por ID
-    if (ordenacaoId === 'crescente') {
-        filtrados.sort((a, b) => hospedes.indexOf(a) - hospedes.indexOf(b));
-    } else {
-        filtrados.sort((a, b) => hospedes.indexOf(b) - hospedes.indexOf(a));
+    // Filtra hóspedes com base no nome
+    if (filtroNome) {
+        listaFiltrada = listaFiltrada.filter(hospede =>
+            hospede.nome.toLowerCase().includes(filtroNome.toLowerCase())
+        );
     }
 
-    // Adiciona ordenação por Nome
-    if (ordenacaoNome === 'crescente') {
-        filtrados.sort((a, b) => a.nome.localeCompare(b.nome));
-    } else {
-        filtrados.sort((a, b) => b.nome.localeCompare(a.nome));
-    }
+    // Ordena hóspedes por nome
+    listaFiltrada.sort((a, b) =>
+        ordenacaoNome === 'crescente'
+            ? a.nome.localeCompare(b.nome)
+            : b.nome.localeCompare(a.nome)
+    );
 
-    // Exibe os hóspedes filtrados
-    if (filtrados.length > 0) {
-        let div = document.getElementById('esconder');
-        div.style.display = 'block';
-        filtrados.forEach((hospede, index) => {
-            const row = document.createElement('tr');
-
-            // Filtra as reservas para o hóspede atual
+    // Exibe os hóspedes ou mensagem caso a lista esteja vazia
+    if (listaFiltrada.length > 0) {
+        document.getElementById('esconder').style.display = 'block';
+        listaFiltrada.forEach((hospede, index) => {
             const reservasDoHospede = reservas.filter(reserva => reserva.documentoHospede === hospede.documento);
+            const reservasInfo = reservasDoHospede.map(reserva => `
+                Quarto: ${reserva.numeroQuarto}, 
+                Check-in: ${reserva.dataCheckin}, 
+                Check-out: ${reserva.dataCheckout}, 
+                Preço: R$ ${reserva.precoEstadia}, 
+                Serviços: ${reserva.servicos?.join(', ') || 'Nenhum'}
+            `).join('<br>') || 'Nenhuma reserva';
 
-            // Prepara as informações de reservas
-            const reservasInfo = reservasDoHospede.map(reserva => {
-                const listaServicos = reserva.servicos ? reserva.servicos.join(', ') : 'Nenhum serviço';
-                return `Quarto: ${reserva.numeroQuarto}, Check-in: ${reserva.dataCheckin}, Check-out: ${reserva.dataCheckout}, Preço da estadia: R$ ${reserva.precoEstadia}, Serviços: ${listaServicos}`;
-            }).join('<br>') || 'Nenhuma reserva';
+            const totalPagar = reservasDoHospede.reduce(
+                (total, reserva) => total + parseFloat(reserva.precoEstadia || 0),
+                0
+            ).toFixed(2);
 
-            // Calcula o total a pagar para o hóspede (soma dos preços das reservas)
-            const totalPagar = reservasDoHospede.reduce((total, reserva) => {
-                return total + parseFloat(reserva.precoEstadia || 0); // Certifique-se de que está somando corretamente
-            }, 0).toFixed(2);
-
-            // Adiciona a linha com as novas colunas
+            const row = document.createElement('tr');
             row.innerHTML = `
-            <td>${index + 1}</td>
-            <td>${hospede.nome}</td>
-            <td>${hospede.documento}</td>
-            <td>${hospede.endereco}</td>
-            <td>${hospede.contato}</td>
-            <td>${reservasInfo}</td>
-            <td>${reservas.servicos}</td>
-            <td>R$ ${totalPagar}</td>
-            <td>
-                <button class="btn-remover-hospede" data-documento="${hospede.documento}">Remover</button>
-            </td>
-            <td>
-                ${reservasDoHospede.map(reserva => 
-                    `<button class="btn-remover-reserva" data-numero-quarto="${reserva.numeroQuarto}">Remover Reserva</button>`
-                ).join('<br>')}
-            </td>
-            <td>
-                <button class="btn-pagamento" data-documento="${hospede.documento}">Ir para o pagamento</button>
-            </td>
-        `;
-        listaHospedes.appendChild(row);  
+                <td>${index + 1}</td>
+                <td>${hospede.nome}</td>
+                <td>${hospede.documento}</td>
+                <td>${hospede.endereco}</td>
+                <td>${hospede.contato}</td>
+                <td>${reservasInfo}</td>
+                <td>R$ ${totalPagar}</td>
+                <td>
+                    <button class="btn-remover-hospede" data-documento="${hospede.documento}">Remover</button>
+                </td>
+                <td>
+                    ${reservasDoHospede.map(reserva => `
+                        <button class="btn-remover-reserva" data-numero-quarto="${reserva.numeroQuarto}">Remover</button>
+                    `).join('<br>')}
+                </td>
+                <td>
+                    <button class="btn-pagamento" data-documento="${hospede.documento}">Pagamento</button>
+                </td>
+            `;
+            listaHospedes.appendChild(row);
         });
     } else {
-        let div = document.getElementById('esconder');
-        div.style.display = 'none';
-        // Exibe uma mensagem caso não haja hóspedes cadastrados
-        const row = document.createElement('tr');
-        row.innerHTML = `<td colspan="8" style="text-align: center;">Nenhum hóspede encontrado.</td>`;
-        listaHospedes.appendChild(row);
+        document.getElementById('esconder').style.display = 'none';
+        listaHospedes.innerHTML = `<tr><td colspan="10" style="text-align: center;">Nenhum hóspede encontrado.</td></tr>`;
     }
-    // Adiciona o evento para o botão de pagamento
+
+    // Adiciona os eventos
+    document.querySelectorAll('.btn-remover-hospede').forEach(button => {
+        button.addEventListener('click', () => removerHospede(button.dataset.documento));
+    });
+
+    document.querySelectorAll('.btn-remover-reserva').forEach(button => {
+        button.addEventListener('click', () => removerReserva(button.dataset.numeroQuarto));
+    });
+
     document.querySelectorAll('.btn-pagamento').forEach(button => {
-        button.addEventListener('click', (event) => {
-            const documento = event.target.getAttribute('data-documento');
+        button.addEventListener('click', () => {
+            const documento = button.dataset.documento;
             window.location.href = `pagamento.html?documento=${documento}`;
         });
     });
-
-    // Adiciona o evento para remover o hóspede
-    document.querySelectorAll('.btn-remover-hospede').forEach(button => {
-        button.addEventListener('click', (event) => {
-            const documento = event.target.getAttribute('data-documento');
-            removerHospede(documento);
-        });
-    });
-
-    // Adiciona o evento para remover a reserva
-    document.querySelectorAll('.btn-remover-reserva').forEach(button => {
-        button.addEventListener('click', (event) => {
-            // Captura o número do quarto diretamente do atributo data-numero-quarto
-            const numeroQuarto = event.target.getAttribute('data-numero-quarto');
-            
-            // Chama a função de remoção passando apenas o número do quarto
-            removerReserva(numeroQuarto);
-        });
-    });
 }
-
 
 // Função para remover um hóspede
 function removerHospede(documento) {
     const index = hospedes.findIndex(hospede => hospede.documento === documento);
 
     if (index !== -1) {
-        if (confirm(`Deseja realmente remover o hóspede "${hospedes[index].nome}"?`)) {
+        if (confirm(`Deseja remover o hóspede "${hospedes[index].nome}"?`)) {
             hospedes.splice(index, 1);
             localStorage.setItem('hospedes', JSON.stringify(hospedes));
             alert('Hóspede removido com sucesso.');
             exibirHospedes();
         }
     } else {
-        alert('Erro: Hóspede não encontrado.');
+        alert('Hóspede não encontrado.');
     }
 }
 
+// Função para remover uma reserva
 function removerReserva(numeroQuarto) {
-    console.log('Tentando remover a reserva para o quarto:', numeroQuarto); // Verifique o valor do número do quarto
-
-    // Encontra o índice da reserva pelo número do quarto
     const reservaIndex = reservas.findIndex(reserva => reserva.numeroQuarto === numeroQuarto);
 
     if (reservaIndex !== -1) {
-        if (confirm('Deseja realmente remover esta reserva?')) {
-            reservas.splice(reservaIndex, 1); // Remove a reserva do array
-            localStorage.setItem('reservas', JSON.stringify(reservas)); // Atualiza o localStorage
+        if (confirm('Deseja remover esta reserva?')) {
+            reservas.splice(reservaIndex, 1);
+            localStorage.setItem('reservas', JSON.stringify(reservas));
             alert('Reserva removida com sucesso.');
-            exibirHospedes(); // Atualiza a lista de hóspedes
+            exibirHospedes();
         }
     } else {
-        alert('Erro: Reserva não encontrada.');
+        alert('Reserva não encontrada.');
     }
 }
 
-// Adiciona o evento de filtragem
+// Eventos para filtros
 document.getElementById('btn-filtrar').addEventListener('click', () => {
     const filtroNome = document.getElementById('filtro-nome').value.trim();
-    const ordenacaoId = document.getElementById('ordenacao-id').value;
     const ordenacaoNome = document.getElementById('ordenacao-nome').value;
-    exibirHospedes(filtroNome, ordenacaoId, ordenacaoNome);
+    exibirHospedes(filtroNome, ordenacaoNome);
 });
 
-// Adiciona evento para atualizar a lista de hóspedes conforme digitação
-document.getElementById('filtro-nome').addEventListener('input', () => {
-    const filtroNome = document.getElementById('filtro-nome').value.trim();
-    const ordenacaoId = document.getElementById('ordenacao-id').value;
-    const ordenacaoNome = document.getElementById('ordenacao-nome').value;
-    exibirHospedes(filtroNome, ordenacaoId, ordenacaoNome);
-});
-
-// Adiciona o evento para limpar os filtros
 document.getElementById('btn-limpar').addEventListener('click', () => {
     document.getElementById('filtro-nome').value = '';
-    document.getElementById('ordenacao-id').value = 'crescente';
     document.getElementById('ordenacao-nome').value = 'crescente';
     exibirHospedes();
 });
 
-// Adiciona o evento para limpar todos os dados
 document.getElementById('btn-limpar-tudo').addEventListener('click', () => {
-    if (confirm("Deseja realmente limpar todos os dados (hóspedes e reservas)?")) {
-        localStorage.removeItem('hospedes');
-        localStorage.removeItem('reservas');
+    if (confirm('Deseja limpar todos os dados?')) {
         hospedes = [];
         reservas = [];
+        localStorage.clear();
         exibirHospedes();
-        alert('Todos os dados foram apagados!');
+        alert('Todos os dados foram apagados.');
     }
 });
 
-// Exibe todos os hóspedes ao carregar a página
+// Carrega a lista inicial
 exibirHospedes();

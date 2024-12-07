@@ -15,6 +15,7 @@ function buscarNomeHospede(documentoHospede) {
 
 // Função para exibir o histórico de reservas
 function exibirHistorico() {
+    // Verifica se existem reservas
     if (historicoReservas.length > 0) {
         historicoReservas.forEach(reserva => {
             const row = document.createElement('tr');
@@ -22,6 +23,7 @@ function exibirHistorico() {
             // Obtém o nome do hóspede
             const nomeHospede = buscarNomeHospede(reserva.documentoHospede);
 
+            // Cria as células da tabela com os dados da reserva
             row.innerHTML = `
                 <td>${nomeHospede}</td>
                 <td>${reserva.dataCheckin}</td>
@@ -33,11 +35,12 @@ function exibirHistorico() {
             tabelaHistorico.appendChild(row);
         });
     } else {
+        // Exibe uma mensagem de "nenhuma reserva encontrada" se não houver registros
         const row = document.createElement('tr');
-        row.innerHTML = '<td colspan="7" style="text-align:center;">Nenhuma reserva encontrada.</td>';
+        row.innerHTML = '<td colspan="6" style="text-align:center;">Nenhuma reserva encontrada.</td>';
         tabelaHistorico.appendChild(row);
     }
 }
 
 // Exibe o histórico de reservas ao carregar a página
-exibirHistorico();
+document.addEventListener('DOMContentLoaded', exibirHistorico);

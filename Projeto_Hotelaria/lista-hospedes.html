@@ -5,46 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <title>Hotel Infinito - Lista de Hóspedes</title>
-    <script src="js/autenticar.js"></script>
+    <script src="js/autenticar.js" defer></script>
 </head>
 <body>
     <header>
         <h1>Lista de Hóspedes Cadastrados</h1>
-        <div id="navbar"></div>
+        <nav id="navbar">
+            <!-- O conteúdo do navbar será gerado dinamicamente -->
+        </nav>
     </header>
 
     <main>
-        <section>
-            <h2>Hóspedes Cadastrados</h2>
+        <section aria-labelledby="titulo-hospedes">
+            <h2 id="titulo-hospedes">Hóspedes Cadastrados</h2>
 
             <!-- Filtro e Ordenação -->
             <div class="filtro">
                 <div class="form-group">
                     <label for="filtro-nome">Filtrar por Nome:</label>
-                    <input type="text" id="filtro-nome" placeholder="Nome">
+                    <input type="text" id="filtro-nome" placeholder="Digite o nome do hóspede" aria-label="Filtrar por Nome">
                 </div>
 
                 <div class="form-group">
                     <label for="ordenacao-nome">Ordenar por Nome:</label>
-                    <select id="ordenacao-nome">
+                    <select id="ordenacao-nome" aria-label="Ordenar por Nome">
                         <option value="crescente">Crescente</option>
                         <option value="decrescente">Decrescente</option>
                     </select>
                 </div>
 
                 <div class="button-container">
-                    <button id="btn-filtrar">Filtrar</button>
-                    <button id="btn-limpar">Limpar Filtros</button>
-                    <button id="btn-limpar-tudo" class="btn-remover-hospede">Excluir Tudo</button> <!-- Excluir Tudo -->
+                    <button id="btn-filtrar" aria-label="Aplicar filtro">Filtrar</button>
+                    <button id="btn-limpar" aria-label="Limpar filtros aplicados">Limpar Filtros</button>
+                    <button id="btn-limpar-tudo" class="btn-remover-hospede" aria-label="Excluir todos os dados">Excluir Tudo</button>
                 </div>
             </div>
 
-            
-            
-
             <!-- Tabela de Hóspedes -->
-            <div id="esconder">
-                <table id="tabela-hospedes">
+            <div id="esconder" aria-hidden="true" hidden>
+                <table id="tabela-hospedes" aria-label="Tabela de Hóspedes">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -55,20 +54,18 @@
                             <th>Reservas</th>
                             <th>Serviços adicionais</th>
                             <th>Total a pagar</th>
-                            <th>Remover hóspede</th>
-                            <th>Remover reservas</th>
-                            <th>Ir para o pagamento</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody id="lista-hospedes">
-                        <!-- Os dados dos hóspedes serão carregados aqui -->
+                        <!-- Os dados dos hóspedes serão carregados dinamicamente aqui -->
                     </tbody>
                 </table>
             </div>
         </section>
     </main>
 
+    <script src="js/navbar.js" defer></script>
     <script src="js/listaHospedes.js" defer></script>
-    <script src="js/navbar.js"></script>
 </body>
 </html>
