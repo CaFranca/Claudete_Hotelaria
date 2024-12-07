@@ -23,7 +23,7 @@ function calcularPrecoEstadia() {
         return 'Selecione datas válidas para a reserva';
     }
 
-    const milissegundosPorDia = 86400000;
+    const milissegundosPorDia = 1000 * 60 * 60 * 24;
     const diasEstadia = Math.floor((dataCheckout - dataCheckin) / milissegundosPorDia);
     const precoDiaria = tipoQuarto === 'premium' ? 64.99 : 39.99;
 

@@ -6,7 +6,6 @@ const mensagemAdmin = document.getElementById('mensagem-admin');
 // Função para adicionar um hóspede de teste
 botaoAdicionarTeste.addEventListener('click', () => {
     let hospedes = JSON.parse(localStorage.getItem('hospedes')) || [];
-    let frigobar = JSON.parse(localStorage.getItem('frigobar')) || [];
 
     // Adiciona um hóspede de teste
     const hospedeTeste = {
@@ -16,16 +15,8 @@ botaoAdicionarTeste.addEventListener('click', () => {
         contato: `99999999${hospedes.length + 1}`
     };
 
-
-    const novoFrigo = {
-    items: {},
-    precoTotal: 0
-    }
-
-    frigobar.push(novoFrigo);
     hospedes.push(hospedeTeste);
     localStorage.setItem('hospedes', JSON.stringify(hospedes));
-    localStorage.setItem('frigobar', JSON.stringify(frigobar));
 
     mensagemAdmin.innerText = `Hóspede de teste "${hospedeTeste.nome}" adicionado com sucesso!`;
 });

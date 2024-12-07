@@ -1,8 +1,6 @@
 // Recupera os dados dos hóspedes e reservas do localStorage
 let hospedes = JSON.parse(localStorage.getItem('hospedes')) || [];
 let reservas = JSON.parse(localStorage.getItem('reservas')) || [];
-let frigobar = JSON.parse(localStorage.getItem('frigobar')) || [];
-
 
 // Seleciona o elemento tbody para inserir as linhas dos hóspedes
 const listaHospedes = document.getElementById('lista-hospedes');
@@ -50,7 +48,7 @@ function exibirHospedes(filtroNome = '', ordenacaoId = 'crescente', ordenacaoNom
             // Calcula o total a pagar para o hóspede (soma dos preços das reservas)
             const totalPagar = reservasDoHospede.reduce((total, reserva) => {
                 return total + parseFloat(reserva.precoEstadia || 0); // Certifique-se de que está somando corretamente
-            }, 0);
+            }, 0).toFixed(2);
 
             // Adiciona a linha com as novas colunas
             row.innerHTML = `
@@ -61,7 +59,7 @@ function exibirHospedes(filtroNome = '', ordenacaoId = 'crescente', ordenacaoNom
             <td>${hospede.contato}</td>
             <td>${reservasInfo}</td>
             <td>${reservas.servicos}</td>
-            <td>R$ ${(totalPagar + frigobar[index].precoTotal).toFixed(2)}</td>
+            <td>R$ ${totalPagar}</td>
             <td>
                 <button class="btn-remover-hospede" data-documento="${hospede.documento}">Remover</button>
             </td>
@@ -120,9 +118,7 @@ function removerHospede(documento) {
     if (index !== -1) {
         if (confirm(`Deseja realmente remover o hóspede "${hospedes[index].nome}"?`)) {
             hospedes.splice(index, 1);
-            frigobar.splice(index, 1)
             localStorage.setItem('hospedes', JSON.stringify(hospedes));
-            localStorage.setItem('frigobar', JSON.stringify(frigobar));
             alert('Hóspede removido com sucesso.');
             exibirHospedes();
         }
@@ -178,10 +174,8 @@ document.getElementById('btn-limpar-tudo').addEventListener('click', () => {
     if (confirm("Deseja realmente limpar todos os dados (hóspedes e reservas)?")) {
         localStorage.removeItem('hospedes');
         localStorage.removeItem('reservas');
-        localStorage.removeItem('frigobar');
         hospedes = [];
         reservas = [];
-        frigobar = [];
         exibirHospedes();
         alert('Todos os dados foram apagados!');
     }
