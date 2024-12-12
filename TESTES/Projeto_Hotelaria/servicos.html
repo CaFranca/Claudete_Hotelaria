@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Solicitar Serviços - Hotel Infinito</title>
+    <script src="js/loginbucha.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Solicitar Serviços</h1>
+        <div id="navbar"></div>
+    </header>
+    <main>
+        <form id="form-servicos">
+            <div class="form-group">
+                <label for="hospede-servico">Nome do Hóspede:</label>
+                <select id="hospede-servico" required>
+                    <option value="">Selecione um hóspede</option>
+                    <!-- As opções de hóspedes serão preenchidas via JavaScript -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="numero-quarto-servico">Número do Quarto:</label>
+                <select id="numero-quarto-servico" required>
+                    <option value="">Selecione um quarto</option>
+                    <!-- As opções de número de quartos serão preenchidas via JavaScript -->
+                </select>
+                <p id="nome-hospede-quarto"></p>
+            </div>
+            <div class="form-group">
+                <label for="servico">Serviço:</label>
+                <select id="servico" required>
+                    <option value="null">Nenhum</option> <!-- Adicionando a opção 'Nenhum' -->
+                    <option value="restaurante">Restaurante (R$ 30,00)</option>
+                    <option value="lavanderia">Lavanderia (R$ 20,00)</option>
+                    <option value="wi-fi">Wi-Fi (R$ 15,00)</option>
+                    <option value="wi-fi5g">Wi-Fi 5G (R$ 25,00)</option>
+                    <option value="servico-quarto">Serviço de Quarto (R$ 40,00)</option>
+                    <option value="limpeza">Limpeza Extra (R$ 30,00)</option>
+                    <option value="translado">Translado (R$ 50,00)</option>
+                    <option value="outros">Outros (R$ 10,00)</option>
+                </select>
+            </div>
+
+            <!-- Novo campo para selecionar itens do frigobar -->
+            <div class="form-group">
+                <label for="frigobar">Itens do Frigobar:</label>
+                <select id="frigobar" required>
+                    <option value="null">Nenhum</option> <!-- Adicionando a opção 'Nenhum' -->
+                    <option value="cerveja">Cerveja (R$ 8,00)</option>
+                    <option value="refrigerante">Refrigerante (R$ 5,00)</option>
+                    <option value="agua">Água Mineral (R$ 3,00)</option>
+                    <option value="suco">Suco (R$ 6,00)</option>
+                    <option value="snack">Snack (R$ 4,00)</option>
+                    <option value="chocolate">Chocolate (R$ 7,00)</option>
+                    <option value="bebida_energetica">Bebida Energética (R$ 10,00)</option>
+                    <option value="iogurte">Iogurte (R$ 5,00)</option>
+                    <option value="sanduiche">Sanduíche (R$ 12,00)</option>
+                    <option value="agua_sabores">Água Saborizada (R$ 6,00)</option>
+                </select>
+                <button type="button" id="add-frigobar">Adicionar ao Pedido</button>
+                <ul id="itens-frigobar">
+                    <!-- Itens do frigobar adicionados serão listados aqui -->
+                </ul>
+            </div>
+            
+            <div class="button-container">
+                <button type="submit">Solicitar Serviço</button>
+                <p id="mensagem-servico" class="centralizar"></p>
+            </div>
+        </form>
+        <div class="button-container">
+            <button type="button" onclick="window.location.href='index.html'">Voltar para o menu principal</button>
+        </div>
+    </main>
+    <script src="js/servicos.js"></script>
+    <script src="js/navbar.js"></script>
+</body>
+</html>
