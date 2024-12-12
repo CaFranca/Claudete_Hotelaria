@@ -1,0 +1,344 @@
+/* Estilo Geral */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9; /* Cor suave para o fundo */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6; /* Melhora a leitura */
+}
+
+a:link {
+    text-decoration: none; /* Sem sublinhado, opcional */
+}
+
+a:visited {
+    text-decoration: none;
+}
+a:hover {
+    color: darkblue; /* Cor ao passar o mouse */
+}
+a:active {
+    color: red; /* Cor ao clicar */
+}
+
+
+/* Estilo do Header */
+header {
+    background-color: #4A90E2; /* Azul claro para cabeçalho */
+    color: #fff; /* Cor clara para o texto */
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* Menu de Navegação */
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+nav ul li {
+    margin: 0 10px; /* Espaçamento entre os itens */
+}
+
+/* Estilo para os Links dentro das Caixinhas */
+nav ul li a {
+    color: #fff; /* Cor do texto */
+    text-decoration: none;
+}
+
+.nav-box {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #357ABD; /* Cor do fundo das caixinhas */
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s; /* Efeitos de transição */
+}
+
+.nav-box:hover {
+    background-color: #285a8a; /* Cor ao passar o mouse */
+    transform: scale(1.05); /* Leve aumento ao passar o mouse */
+}
+
+/* Responsividade para Navegação */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column; /* Alinha os itens verticalmente em telas pequenas */
+    }
+
+    .nav-box {
+        margin-bottom: 10px; /* Adiciona espaçamento entre os itens em telas pequenas */
+    }
+}
+
+/* Estilo do Main */
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto; /* Centraliza o conteúdo */
+}
+
+/* Seção e Formulários */
+section {
+    padding: 20px;
+    margin: 20px auto;
+    background-color: #fff; /* Fundo branco para contraste */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: fit-content; /* Limita o tamanho da seção */
+}
+
+/* Estilo dos Títulos */
+h2 {
+    color: #0b4e9b;
+    font-size: 1.8em;
+    margin-bottom: 15px; /* Espaçamento abaixo do título */
+}
+
+/* Organização dos Formulários */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 8px; /* Aumenta o espaçamento entre o rótulo e o input */
+}
+
+.form-group input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s; /* Transição suave na borda */
+}
+
+.form-group input:focus {
+    border-color: #4A90E2; /* Borda azul ao focar */
+    outline: none; /* Remove o contorno padrão */
+}
+
+/* Estilo dos Botões */
+button {
+    background-color: #4A90E2; /* Azul padrão */
+    color: white; /* Texto branco */
+    padding: 12px; /* Espaçamento interno */
+    border: none; /* Remove borda padrão */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de clique */
+    font-size: 1em; /* Tamanho da fonte */
+    transition: background-color 0.3s, transform 0.2s; /* Efeitos de transição */
+    width: auto; /* Ajusta a largura ao conteúdo */
+    text-align: center; /* Centraliza o texto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    margin: 5px; /* Adiciona um pequeno espaçamento entre os botões */
+}
+
+/* Organiza os botões em um contêiner flexível */
+.button-container {
+    display: flex; /* Utiliza flexbox para organizar os botões */
+    justify-content: center; /* Centraliza os botões horizontalmente */
+    align-items: center; /* Alinha os botões verticalmente, caso necessário */
+    gap: 15px; /* Adiciona espaçamento entre os botões */
+    flex-wrap: wrap; /* Permite que os botões se movam para a linha seguinte se necessário */
+    margin-top: 20px; /* Espaçamento acima do contêiner de botões */
+}
+
+/* Efeito de Hover nos Botões */
+button:hover {
+    background-color: #357ABD;
+    transform: scale(1.05); /* Leve aumento no botão ao passar o mouse */
+}
+
+/* Efeito de Foco nos Botões */
+button:focus {
+    outline: 2px solid #357ABD; /* Contorno azul ao focar */
+}
+
+.centralizar
+{
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    text-align: center;
+}
+/* Botão de Remover Hospede */
+button.btn-remover-hospede {
+    background-color: #D9534F; /* Cor vermelha */
+    color: #fff;
+}
+
+button.btn-remover-hospede:hover {
+    background-color: #C9302C;
+}
+
+/* Botão de Remover Reserva */
+button.btn-remover-reserva {
+    background-color: #F0AD4E; /* Cor amarela */
+    color: #fff;
+}
+
+button.btn-remover-reserva:hover {
+    background-color: #EC971F;
+}
+
+/* Botão de Ir para o Pagamento */
+button.btn-pagamento {
+    background-color: #5BC0DE; /* Cor azul clara */
+    color: #fff;
+}
+
+button.btn-pagamento:hover {
+    background-color: #31B0D5;
+}
+
+/* Botão de Navegação */
+button.btn-navegacao {
+    background-color: #4A90E2; /* Azul padrão */
+    color: white; /* Texto branco */
+    padding: 12px; /* Espaçamento interno */
+    border: none; /* Remove borda padrão */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de clique */
+    font-size: 1em; /* Tamanho da fonte */
+    transition: background-color 0.3s, transform 0.2s; /* Efeitos de transição */
+    width: auto; /* Ajusta a largura ao conteúdo */
+    text-align: center; /* Centraliza o texto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+/* Efeito ao Passar o Mouse no Botão de Navegação */
+button.btn-navegacao:hover {
+    background-color: #357ABD; /* Cor mais escura ao passar o mouse */
+    transform: scale(1.05); /* Leve aumento no botão */
+}
+
+/* Efeito ao Focar no Botão de Navegação */
+button.btn-navegacao:focus {
+    outline: 2px solid #357ABD; /* Contorno azul ao focar */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    table th, table td {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+
+    table td, table th {
+        text-align: center; /* Centraliza o conteúdo nas células em telas pequenas */
+    }
+
+    table {
+        font-size: 0.9em;
+    }
+
+    button {
+        font-size: 0.85em; /* Ajusta o tamanho dos botões em dispositivos móveis */
+    }
+
+    /* Ajusta os botões de navegação em telas pequenas */
+    button.btn-navegacao {
+        font-size: 0.9em; /* Ajusta o tamanho da fonte em telas menores */
+        padding: 8px 16px; /* Reduz o espaçamento */
+    }
+}
+
+/* Estilo para Botões de Navegação */
+button.btn-navegacao {
+    background-color: #4A90E2; /* Azul padrão */
+    color: white; /* Texto branco */
+    padding: 12px; /* Espaçamento interno */
+    border: none; /* Remove borda padrão */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de clique */
+    font-size: 1em; /* Tamanho da fonte */
+    transition: background-color 0.3s, transform 0.2s; /* Efeitos de transição */
+    width: auto; /* Ajusta a largura ao conteúdo */
+    text-align: center; /* Centraliza o texto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+/* Estilo para Botões de Navegação */
+button.btn-navegacao:hover {
+    background-color: #357ABD; /* Cor mais escura ao passar o mouse */
+    transform: scale(1.05); /* Leve aumento no botão */
+}
+
+button.btn-navegacao:focus {
+    outline: 2px solid #357ABD; /* Contorno azul ao focar */
+}
+
+/* Estilos para a Seção de Serviços */
+.services-section {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.services-section h2 {
+    color: #4A90E2;
+    font-size: 2em;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Organiza os Cards dos Serviços */
+.service-cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.service-card {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 30%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.service-card:hover {
+    transform: scale(1.05);
+}
+
+.service-card h3 {
+    color: #357ABD;
+    font-size: 1.5em;
+    margin-top: 15px;
+}
+
+.service-image {
+    width: 100%;
+    border-radius: 10px;
+    max-height: 200px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+/* Responsividade para a Seção de Serviços */
+@media (max-width: 768px) {
+    .service-card {
+        width: 100%; /* Faz os cards ocuparem a largura inteira */
+    }
+
+    .service-cards {
+        flex-direction: column; /* Organiza os cards verticalmente */
+    }
+}
+

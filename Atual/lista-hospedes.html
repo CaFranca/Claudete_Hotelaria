@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Hotel Infinito - Lista de Hóspedes</title>
+    <script src="js/autenticar.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Lista de Hóspedes Cadastrados</h1>
+        <div id="navbar"></div>
+    </header>
+
+    <main>
+        <section>
+            <h2>Hóspedes Cadastrados</h2>
+
+            <!-- Filtro e Ordenação -->
+            <div class="filtro">
+                <div class="form-group">
+                    <label for="filtro-nome">Filtrar por Nome:</label>
+                    <input type="text" id="filtro-nome" placeholder="Nome">
+                </div>
+
+                <div class="form-group">
+                    <label for="ordenacao-nome">Ordenar por Nome:</label>
+                    <select id="ordenacao-nome">
+                        <option value="crescente">Crescente</option>
+                        <option value="decrescente">Decrescente</option>
+                    </select>
+                </div>
+
+                <div class="button-container">
+                    <button id="btn-filtrar">Filtrar</button>
+                    <button id="btn-limpar">Limpar Filtros</button>
+                    <button id="btn-limpar-tudo" class="btn-remover-hospede">Excluir Tudo</button> <!-- Excluir Tudo -->
+                </div>
+            </div>
+
+            
+            
+
+            <!-- Tabela de Hóspedes -->
+            <div id="esconder">
+                <table id="tabela-hospedes">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Documento</th>
+                            <th>Endereço</th>
+                            <th>Contato</th>
+                            <th>Reservas</th>
+                            <th>Remover hóspede</th>
+                            <th>Remover reservas</th>
+                            <th>Ir para o pagamento</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-hospedes">
+                        <!-- Os dados dos hóspedes serão carregados aqui -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/listaHospedes.js" defer></script>
+    <script src="js/navbar.js"></script>
+    <footer>
+        <p><img src = "logo_HotelInfinito.png" class="footer-logo"/></p>
+    </footer>
+</body>
+</html>

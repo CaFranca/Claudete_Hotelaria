@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Reservas Online - Hotel Infinito</title>
+    <script src="js/autenticar.js"></script>
+</head>
+
+
+<body>
+    <header>
+        <h1>Reservas</h1>
+        <div id="navbar"></div>
+    </header>
+    <main>
+        <form id="form-reservas">
+            <div class="form-group">
+                <label for="hospede-reserva">Nome do Hóspede:</label>
+                <select id="hospede-reserva" required>
+                    <option value="">Selecione um hóspede</option>
+                    <!-- Os nomes dos hóspedes serão carregados aqui -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="data-checkin">Data Check-in:</label>
+                <input type="date" id="data-checkin" required>
+            </div>
+            <div class="form-group">
+                <label for="data-checkout">Data Check-out:</label>
+                <input type="date" id="data-checkout" required>
+            </div>
+            <div class="form-group">
+                <label for="quarto-reserva">Número do Quarto:</label>
+                <input type="number" id="quarto-reserva" required>
+            </div>
+            <div class="form-group">
+                <label for="tipo-quarto">Tipo de Quarto</label>
+                    <select name="tipo-quarto" id="tipo-quarto">
+                        <option value="popular"> Popular (R$39,99)</option>
+                        <option value="premium"> Premium (R$64,99)</option>
+                    </select>
+            </div>
+
+            <div class="button-container">
+            <button type="submit" onclick="mostrar_PrecoEstadia()">Reservar Quarto</button></div>
+            <p id="mensagem-reserva"></p>
+        </form>
+        <div class="button-container">
+        <button type="button" onclick="window.location.href='index.html'">Voltar para o menu principal</button>
+    </main>
+    <script src="js/reservas.js"></script> <!-- Link para o arquivo JavaScript -->
+    <script src="js/navbar.js"></script>
+    <footer>
+        <p><img src = "logo_HotelInfinito.png" class="footer-logo"></p>
+    </footer>
+</body>
+</html>

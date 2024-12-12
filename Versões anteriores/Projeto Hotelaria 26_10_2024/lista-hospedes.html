@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Hotel Infinito - Lista de Hóspedes</title>
+</head>
+<body>
+    <header>
+        <h1>Lista de Hóspedes Cadastrados</h1>
+        <nav>
+            <ul>
+                <li><a href="cadastro-hospedes.html">Cadastro de Hóspedes</a></li>
+                <li><a href="reservas.html">Reservas Online</a></li>
+                <li><a href="index.html">Página Inicial</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Hóspedes Cadastrados</h2>
+            <div class="filtro">
+                <label for="filtro-id">Filtrar por ID:</label>
+                <input type="text" id="filtro-id" placeholder="ID"><br><br>
+                
+                <label for="filtro-nome">Filtrar por Nome:</label>
+                <input type="text" id="filtro-nome" placeholder="Nome"><br><br>
+                
+                <label for="ordenacao-id">Ordenar por ID:</label>
+                <select id="ordenacao-id">
+                    <option value="crescente">Crescente</option>
+                    <option value="decrescente">Decrescente</option>
+                </select><br><br>
+                
+                <label for="ordenacao-nome">Ordenar por Nome:</label>
+                <select id="ordenacao-nome">
+                    <option value="crescente">Crescente</option>
+                    <option value="decrescente">Decrescente</option>
+                </select><br><br>
+                
+                <button id="btn-filtrar">Filtrar</button><br><br>
+                <button id="btn-limpar">Limpar Filtros</button><br><br>
+            </div>
+            
+            <table id="tabela-hospedes">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Documento</th>
+                        <th>Endereço</th>
+                        <th>Contato</th>
+                        <th>Reservas</th>
+                        <th>Serviços Adicionais</th> <!-- Nova coluna para serviços adicionais -->
+                    </tr>
+                </thead>
+                <tbody id="lista-hospedes">
+                    <!-- Os dados dos hóspedes serão carregados aqui -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script src="js/listaHospedes.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Reservas Online - Hotel Infinito</title>
+</head>
+<body>
+    <header>
+        <h1>Reservas Online</h1>
+    </header>
+    <main>
+        <form id="form-reservas">
+            <div class="form-group">
+                <label for="data-checkin">Data Check-in:</label>
+                <input type="date" id="data-checkin" required>
+            </div>
+            <div class="form-group">
+                <label for="data-checkout">Data Check-out:</label>
+                <input type="date" id="data-checkout" required>
+            </div>
+            <div class="form-group">
+                <label for="hospede-reserva">Nome do Hóspede:</label>
+                <input type="text" id="hospede-reserva" required>
+            </div>
+            <div class="form-group">
+                <label for="quarto-reserva">Número do Quarto:</label>
+                <input type="number" id="quarto-reserva" required>
+            </div>
+            <div class="form-group">
+                <label for="preco-diaria">Preço Diário (R$):</label>
+                <input type="number" id="preco-diaria" required>
+            </div>
+            <button type="submit">Reservar Quarto</button>
+            <p id="mensagem-reserva"></p>
+        </form>
+        <a href="index.html">Voltar para o menu principal</a>
+    </main>
+    <script src="js/reservas.js"></script>
+</body>
+</html>

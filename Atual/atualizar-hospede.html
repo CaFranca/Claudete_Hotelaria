@@ -1,0 +1,66 @@
+
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Atualizar Hóspedes - Hotel Infinito</title>
+    <script src="js/autenticar.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Atualização de Hóspedes</h1>
+        <div id="navbar"></div>
+    </header>
+
+    <main>
+        <div class="form-group">
+            <label for="lista-hospedes">Nome do hóspede:</label>
+            <select id="lista-hospedes">
+                <option value="" selected disabled>Selecione um hóspede</option>
+            </select>   
+        </div>
+        <form id="form-atualizacao-hospedes">
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome">
+            </div>
+            <div class="form-group">
+                <label for="documento">Documento:</label>
+                <input type="text" id="documento">
+            </div>
+            <div class="form-group">
+                <label for="endereco">Endereço:</label>
+                <input type="text" id="endereco">
+            </div>
+            <div class="form-group">
+                <label for="contato">Contato:</label>
+                <input type="number" id="contato">
+            </div>
+            <div class="button-container">
+                <button type="submit">Atualizar Hóspede</button>
+                <br>
+                
+            </div>
+        </form>
+        <p id="mensagem-hospede" class="centralizar"></p>
+        <div class="button-container">
+            <button type="button" onclick="window.location.href='index.html'">Voltar para o menu principal</button>
+
+            <button type="button" onclick="window.location.href='lista-hospedes.html'">Ver a lista de Hóspedes</button>
+        </div>
+    </main>
+
+    <script src="js/atualizar-hospede.js"></script>
+    <script src="js/navbar.js"></script>
+    <footer>
+        <p><img src = "logo_HotelInfinito.png" class="footer-logo"/></p>
+    </footer>
+</body>
+
+</html>
