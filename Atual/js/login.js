@@ -30,7 +30,7 @@ async function login(event) {
     console.log(`Essa é a senha: ${senha}`);
 
     // Verifica se as credenciais fornecidas correspondem às credenciais esperadas
-    if (usuario == "Admin" && (senha == await criptografar("A.Cinema"))) {
+    if (usuario == "admin" && (senha == await criptografar("admin"))) {
         console.log("True"); // Indica que o login foi bem-sucedido no console
 
         // Registra que o usuário está logado e registra o evento no localStorage
