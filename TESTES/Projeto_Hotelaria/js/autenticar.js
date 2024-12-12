@@ -1,6 +1,6 @@
 function logout() {
     localStorage.removeItem('logado');  // Remove a chave 'logado'
-    window.location.href = 'loginbucha.html'; // Redireciona para a página de login
+    window.location.href = 'login.html'; // Redireciona para a página de login
 }
 
 function verificaLogin() {
@@ -10,7 +10,7 @@ function verificaLogin() {
         console.log("Usuário está logado.");
     } else {
         // O usuário não está logado, redirecionar para a página de login
-        window.location.href = 'loginbucha.html';
+        window.location.href = 'login.html';
     }
 }
 

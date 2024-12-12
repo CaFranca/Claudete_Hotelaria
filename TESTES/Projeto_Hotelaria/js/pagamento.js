@@ -35,13 +35,9 @@ if (hospede) {
                             Quarto: ${reserva.numeroQuarto}, Check-in: ${reserva.dataCheckin}, Check-out: ${reserva.dataCheckout}, Preço: R$${reserva.precoEstadia}`
 
         // Exibe os serviços solicitados e seus preços
-        if (reserva.servicos && reserva.servicos.length > 0) {
-            detalhesPagamento += `<br><strong>Frigobar:</strong><ul>`;
-            reserva.servicos.forEach(servico => {
-                detalhesPagamento += `
-                                <li>${servico.nome} - R$ ${servico.preco}</li>
-                            `;
-            });
+        if ( frigobarExtra > 0) {
+            detalhesPagamento += `<br><strong>Foram gastos no Frigobar:</strong> R$${frigobarExtra.toFixed(2)}<ul>`;
+
             detalhesPagamento += `</ul>`;
         } else {
             detalhesPagamento += `<br><strong>Serviços:</strong> Nenhum serviço do frigobar foi solicitado.</br>`;
@@ -52,7 +48,7 @@ if (hospede) {
 
     // Calcula o total a pagar, incluindo o preço da estadia e dos serviços
     const totalPagar = reservasDoHospede.reduce((total, reserva) => {
-        const totalReserva = parseFloat(reserva.precoEstadia) + (reserva.servicos ? reserva.servicos.reduce((totalServico, servico) => totalServico + parseFloat(servico.preco), 0) : 0);
+        const totalReserva = parseFloat(reserva.precoEstadia);
         return total + totalReserva;
     }, 0);
 

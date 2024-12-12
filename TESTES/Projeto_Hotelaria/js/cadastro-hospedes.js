@@ -1,17 +1,22 @@
-var hospedes = JSON.parse(localStorage.getItem('hospedes')) || []; //Pega os hóspedes do localStorage
+var hospedes = JSON.parse(localStorage.getItem('hospedes')) || []; // Pega os hóspedes do localStorage
 let frigobar = JSON.parse(localStorage.getItem('frigobar')) || [];
+const mensagemHospede = document.getElementById('mensagem-hospede');
 
-
-function validarDados(nome, documento, endereco, contato) { //Verifica se todos os campos estão preenchidos. 
-    return nome && documento && endereco && contato; //No caso, se um campo estiver vazio, a função retornará "False".
+function validarDados(nome, documento, endereco, contato) {
+    // Verifica se todos os campos estão preenchidos
+    return nome && documento && endereco && contato;
 }
 
-function adicionarHospede(nome, documento, endereco, contato) { //Adiciona um novo hóspede ao localStorage
-    hospedes.push({ nome, documento, endereco, contato }); //Envia o hóspede para o final do array hospedes, inicializado na primeira linha
-    localStorage.setItem('hospedes', JSON.stringify(hospedes)); //Manda o array para o localStorage
-    return 'Hóspede cadastrado com sucesso.';
+function adicionarHospede(nome, documento, endereco, contato) {
+    // Adiciona um novo hóspede ao localStorage
+    hospedes.push({ nome, documento, endereco, contato }); // Envia o hóspede para o final do array hospedes
+    localStorage.setItem('hospedes', JSON.stringify(hospedes)); // Salva no localStorage
+    localStorage.setItem(
+        'logging',
+        JSON.stringify(`Hóspede ${nome} criado às ${new Date().toLocaleString()}`)
+    );
+    mensagemHospede.innerText = 'Hóspede cadastrado com sucesso.'; // Exibe a mensagem
 }
-
 
 // Evento de envio do formulário de cadastro
 document.getElementById('form-cadastro-hospedes').addEventListener('submit', (event) => {
@@ -25,14 +30,12 @@ document.getElementById('form-cadastro-hospedes').addEventListener('submit', (ev
 
     // Verifica se os dados são válidos
     if (!validarDados(nome, documento, endereco, contato)) {
-        document.getElementById('mensagem-hospede').innerText = 
-            'Por favor, preencha todos os campos.';
+        mensagemHospede.innerText = 'Por favor, preencha todos os campos.';
         return;
     }
 
     // Adiciona o hóspede
-    const mensagem = adicionarHospede(nome, documento, endereco, contato);
-    document.getElementById('mensagem-hospede').innerText = mensagem;
+    adicionarHospede(nome, documento, endereco, contato);
 
     // Limpa os campos do formulário após o envio
     document.getElementById('form-cadastro-hospedes').reset();

@@ -1,38 +1,48 @@
-/* Estilo Geral */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f9f9f9; /* Cor suave para o fundo */
+    background-color: #f9f9f9; 
     color: #333;
     margin: 0;
     padding: 0;
-    line-height: 1.6; /* Melhora a leitura */
+    line-height: 1.6;
 }
 
 a:link {
-    text-decoration: none; /* Sem sublinhado, opcional */
+    text-decoration: none;
 }
 
 a:visited {
     text-decoration: none;
 }
 a:hover {
-    color: darkblue; /* Cor ao passar o mouse */
+    color: darkblue;
 }
 a:active {
-    color: red; /* Cor ao clicar */
+    color: red;
 }
 
 
-/* Estilo do Header */
 header {
-    background-color: #4A90E2; /* Azul claro para cabeçalho */
-    color: #fff; /* Cor clara para o texto */
+    background-color: #4A90E2; 
+    color: #fff;
     padding: 20px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    
 }
 
-/* Menu de Navegação */
+
+footer {
+    background-color: #4A90E2;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    line-height: 35px;
+}
+
 nav ul {
     display: flex;
     justify-content: center;
@@ -42,64 +52,60 @@ nav ul {
 }
 
 nav ul li {
-    margin: 0 10px; /* Espaçamento entre os itens */
+    margin: 0 10px;
 }
 
-/* Estilo para os Links dentro das Caixinhas */
 nav ul li a {
-    color: #fff; /* Cor do texto */
+    color: #fff; 
     text-decoration: none;
 }
 
 .nav-box {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #357ABD; /* Cor do fundo das caixinhas */
+    background-color: #357ABD; 
     border-radius: 5px;
-    transition: background-color 0.3s, transform 0.2s; /* Efeitos de transição */
+    transition: background-color 0.3s, transform 0.2s; 
 }
 
 .nav-box:hover {
-    background-color: #285a8a; /* Cor ao passar o mouse */
-    transform: scale(1.05); /* Leve aumento ao passar o mouse */
+    background-color: #285a8a; 
+    transform: scale(1.05); 
 }
 
-/* Responsividade para Navegação */
 @media (max-width: 768px) {
     nav ul {
-        flex-direction: column; /* Alinha os itens verticalmente em telas pequenas */
+        flex-direction: column; 
     }
 
     .nav-box {
-        margin-bottom: 10px; /* Adiciona espaçamento entre os itens em telas pequenas */
+        margin-bottom: 10px; 
     }
 }
 
-/* Estilo do Main */
+
 main {
     padding: 20px;
     max-width: 1200px;
-    margin: 0 auto; /* Centraliza o conteúdo */
+    margin: 0 auto; 
 }
 
-/* Seção e Formulários */
 section {
     padding: 20px;
     margin: 20px auto;
-    background-color: #fff; /* Fundo branco para contraste */
+    background-color: #fff; 
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    max-width: fit-content; /* Limita o tamanho da seção */
+    max-width: fit-content; 
 }
 
-/* Estilo dos Títulos */
 h2 {
     color: #0b4e9b;
     font-size: 1.8em;
-    margin-bottom: 15px; /* Espaçamento abaixo do título */
+    margin-bottom: 15px; 
 }
 
-/* Organização dos Formulários */
+
 .form-group {
     display: flex;
     flex-direction: column;
@@ -108,7 +114,7 @@ h2 {
 
 .form-group label {
     font-weight: bold;
-    margin-bottom: 8px; /* Aumenta o espaçamento entre o rótulo e o input */
+    margin-bottom: 8px; 
 }
 
 .form-group input {
@@ -116,49 +122,48 @@ h2 {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1em;
-    transition: border-color 0.3s; /* Transição suave na borda */
+    transition: border-color 0.3s; 
 }
 
 .form-group input:focus {
-    border-color: #4A90E2; /* Borda azul ao focar */
-    outline: none; /* Remove o contorno padrão */
+    border-color: #4A90E2; 
+    outline: none; 
 }
 
-/* Estilo dos Botões */
 button {
-    background-color: #4A90E2; /* Azul padrão */
-    color: white; /* Texto branco */
-    padding: 12px; /* Espaçamento interno */
-    border: none; /* Remove borda padrão */
-    border-radius: 5px; /* Bordas arredondadas */
-    cursor: pointer; /* Cursor de clique */
-    font-size: 1em; /* Tamanho da fonte */
-    transition: background-color 0.3s, transform 0.2s; /* Efeitos de transição */
-    width: auto; /* Ajusta a largura ao conteúdo */
-    text-align: center; /* Centraliza o texto */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
-    margin: 5px; /* Adiciona um pequeno espaçamento entre os botões */
+    background-color: #4A90E2; 
+    color: white; 
+    padding: 12px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 1em; 
+    transition: background-color 0.3s, transform 0.2s; 
+    width: auto; 
+    text-align: center; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    margin: 5px; 
 }
 
-/* Organiza os botões em um contêiner flexível */
+
 .button-container {
-    display: flex; /* Utiliza flexbox para organizar os botões */
-    justify-content: center; /* Centraliza os botões horizontalmente */
-    align-items: center; /* Alinha os botões verticalmente, caso necessário */
-    gap: 15px; /* Adiciona espaçamento entre os botões */
-    flex-wrap: wrap; /* Permite que os botões se movam para a linha seguinte se necessário */
-    margin-top: 20px; /* Espaçamento acima do contêiner de botões */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 15px; 
+    flex-wrap: wrap; 
+    margin-top: 20px; 
 }
 
-/* Efeito de Hover nos Botões */
+
 button:hover {
     background-color: #357ABD;
-    transform: scale(1.05); /* Leve aumento no botão ao passar o mouse */
+    transform: scale(1.05); 
 }
 
-/* Efeito de Foco nos Botões */
+
 button:focus {
-    outline: 2px solid #357ABD; /* Contorno azul ao focar */
+    outline: 2px solid #357ABD; 
 }
 
 .centralizar
@@ -168,9 +173,9 @@ button:focus {
     align-content: center;
     text-align: center;
 }
-/* Botão de Remover Hospede */
+
 button.btn-remover-hospede {
-    background-color: #D9534F; /* Cor vermelha */
+    background-color: #D9534F; 
     color: #fff;
 }
 
@@ -178,9 +183,8 @@ button.btn-remover-hospede:hover {
     background-color: #C9302C;
 }
 
-/* Botão de Remover Reserva */
 button.btn-remover-reserva {
-    background-color: #F0AD4E; /* Cor amarela */
+    background-color: #F0AD4E; 
     color: #fff;
 }
 
@@ -188,9 +192,8 @@ button.btn-remover-reserva:hover {
     background-color: #EC971F;
 }
 
-/* Botão de Ir para o Pagamento */
 button.btn-pagamento {
-    background-color: #5BC0DE; /* Cor azul clara */
+    background-color: #5BC0DE; 
     color: #fff;
 }
 
@@ -198,30 +201,29 @@ button.btn-pagamento:hover {
     background-color: #31B0D5;
 }
 
-/* Botão de Navegação */
 button.btn-navegacao {
-    background-color: #4A90E2; /* Azul padrão */
-    color: white; /* Texto branco */
-    padding: 12px; /* Espaçamento interno */
-    border: none; /* Remove borda padrão */
-    border-radius: 5px; /* Bordas arredondadas */
-    cursor: pointer; /* Cursor de clique */
-    font-size: 1em; /* Tamanho da fonte */
-    transition: background-color 0.3s, transform 0.2s; /* Efeitos de transição */
-    width: auto; /* Ajusta a largura ao conteúdo */
-    text-align: center; /* Centraliza o texto */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    background-color: #4A90E2; 
+    color: white; 
+    padding: 12px;
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 1em; 
+    transition: background-color 0.3s, transform 0.2s;
+    width: auto; 
+    text-align: center; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
-/* Efeito ao Passar o Mouse no Botão de Navegação */
+
 button.btn-navegacao:hover {
-    background-color: #357ABD; /* Cor mais escura ao passar o mouse */
-    transform: scale(1.05); /* Leve aumento no botão */
+    background-color: #357ABD; 
+    transform: scale(1.05); 
 }
 
-/* Efeito ao Focar no Botão de Navegação */
+
 button.btn-navegacao:focus {
-    outline: 2px solid #357ABD; /* Contorno azul ao focar */
+    outline: 2px solid #357ABD; 
 }
 
 /* Responsividade */
@@ -232,7 +234,7 @@ button.btn-navegacao:focus {
     }
 
     table td, table th {
-        text-align: center; /* Centraliza o conteúdo nas células em telas pequenas */
+        text-align: center; 
     }
 
     table {
@@ -240,42 +242,42 @@ button.btn-navegacao:focus {
     }
 
     button {
-        font-size: 0.85em; /* Ajusta o tamanho dos botões em dispositivos móveis */
+        font-size: 0.85em; 
     }
 
-    /* Ajusta os botões de navegação em telas pequenas */
+    
     button.btn-navegacao {
-        font-size: 0.9em; /* Ajusta o tamanho da fonte em telas menores */
-        padding: 8px 16px; /* Reduz o espaçamento */
+        font-size: 0.9em; 
+        padding: 8px 16px; 
     }
 }
 
-/* Estilo para Botões de Navegação */
+
 button.btn-navegacao {
-    background-color: #4A90E2; /* Azul padrão */
-    color: white; /* Texto branco */
-    padding: 12px; /* Espaçamento interno */
-    border: none; /* Remove borda padrão */
-    border-radius: 5px; /* Bordas arredondadas */
-    cursor: pointer; /* Cursor de clique */
-    font-size: 1em; /* Tamanho da fonte */
-    transition: background-color 0.3s, transform 0.2s; /* Efeitos de transição */
-    width: auto; /* Ajusta a largura ao conteúdo */
-    text-align: center; /* Centraliza o texto */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    background-color: #4A90E2; 
+    color: white; 
+    padding: 12px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 1em; 
+    transition: background-color 0.3s, transform 0.2s; 
+    width: auto; 
+    text-align: center; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Estilo para Botões de Navegação */
+
 button.btn-navegacao:hover {
-    background-color: #357ABD; /* Cor mais escura ao passar o mouse */
-    transform: scale(1.05); /* Leve aumento no botão */
+    background-color: #357ABD; 
+    transform: scale(1.05); 
 }
 
 button.btn-navegacao:focus {
-    outline: 2px solid #357ABD; /* Contorno azul ao focar */
+    outline: 2px solid #357ABD; 
 }
 
-/* Estilos para a Seção de Serviços */
+
 .services-section {
     padding: 20px;
     background-color: #fff;
@@ -290,7 +292,7 @@ button.btn-navegacao:focus {
     text-align: center;
 }
 
-/* Organiza os Cards dos Serviços */
+
 .service-cards {
     display: flex;
     justify-content: space-between;
@@ -326,14 +328,14 @@ button.btn-navegacao:focus {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsividade para a Seção de Serviços */
+
 @media (max-width: 768px) {
     .service-card {
-        width: 100%; /* Faz os cards ocuparem a largura inteira */
+        width: 100%; 
     }
 
     .service-cards {
-        flex-direction: column; /* Organiza os cards verticalmente */
+        flex-direction: column;
     }
 }
 

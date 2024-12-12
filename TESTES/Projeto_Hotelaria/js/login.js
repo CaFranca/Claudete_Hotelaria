@@ -1,4 +1,5 @@
 //const senhaCriptografada = CryptoJS.SHA256(senha).toString(CryptoJS.enc.Base64);
+let logging = JSON.parse(localStorage.getItem('logging')) || []
 
 async function criptografar(message) {
     // Codifica a mensagem para um ArrayBuffer
@@ -22,6 +23,7 @@ async function login(event) {
     if (usuario == "admin" && ( senha == await criptografar("admin"))) {
         console.log("True")
         localStorage.setItem('logado', 'true');
+        localStorage.setItem('logging', JSON.stringify(`Login de admin às ${new Date()}`))
         window.location.href = 'index.html';
     } else {
         alert("Dados incorretos, tente novamente");

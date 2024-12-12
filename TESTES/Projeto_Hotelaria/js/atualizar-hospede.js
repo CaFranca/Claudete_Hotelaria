@@ -1,18 +1,19 @@
-// Inicializa os valores que precisaremos durante o código 
+// inicializa os valores que precisaremos durante o código 
 let hospedes = JSON.parse(localStorage.getItem('hospedes')) || []
+let logging = JSON.parse(localStorage.getItem('logging')) || []
 const formAtualizacao = document.getElementById('form-atualizacao-hospedes')
 const listaHospedes = document.getElementById('lista-hospedes')
 const mensagemHospede = document.getElementById('mensagem-hospede')
 
-// Atualiza a lista de hóspedes no select. Essa função é necessária para, após a atualização, o nome do hóspede mudar na lista
+// atualiza a lista de hóspedes no select; necessária para que após a atualização, o nome do hóspede mude na lista
 function atualizarListaHospedes() {
-  listaHospedes.innerHTML = `<option value="" selected disabled>Selecione um hóspede</option>` // Limpa e adiciona a opção padrão
+  listaHospedes.innerHTML = `<option value="" selected disabled>Selecione um hóspede</option>` // limpa e adiciona a opção padrão
   hospedes.forEach(hospede => {
-    listaHospedes.innerHTML += `<option value="${hospede.documento}">${hospede.nome}</option>` // Adiciona os hóspedes como itens do select, sendo que o documento é o valor da opção
+    listaHospedes.innerHTML += `<option value="${hospede.documento}">${hospede.nome}</option>` // adiciona os hóspedes como itens do select, sendo que o documento é o valor da opção
   });
 }
 
-// Limpa os campos do formulário. Utilizada após a pessoa clicar em "Atualizar Hóspede".
+// limpa os campos do formulário. Utilizada após a pessoa clicar em "Atualizar Hóspede".
 function limparCampos() {
   listaHospedes.value = '';
   document.getElementById('nome').value = ''
@@ -78,6 +79,7 @@ formAtualizacao.addEventListener('submit', (event) => { // Dispara quando o form
 
     // Salva as alterações no localStorage
     localStorage.setItem('hospedes', JSON.stringify(hospedes));
+    localStorage.setItem('logging', JSON.stringify(`Hóspede ${hospede.nome} atualizado às ${new Date()}`))
     mensagemHospede.innerText = 'Hóspede atualizado com sucesso!';
     
     // Atualiza a lista de hóspedes e limpa os campos

@@ -1,37 +1,46 @@
-// Recupera os dados dos hóspedes e reservas do localStorage
+// recuperando os dados dos hóspedes e reservas do localstorage
 let hospedes = JSON.parse(localStorage.getItem('hospedes')) || [];
 let reservas = JSON.parse(localStorage.getItem('reservas')) || [];
 let frigobar = JSON.parse(localStorage.getItem('frigobar')) || [];
+let logging = JSON.parse(localStorage.getItem('logging')) || [];
+const urlParams = new URLSearchParams(window.location.search);
+const documentoHospede = urlParams.get('documento');
 
+let frigobarExtra = 0
 
-// Seleciona o elemento tbody para inserir as linhas dos hóspedes
+// loop que encontra o hóspede pelo documento
+for (let i = 0; i < frigobar.length; i++) {
+    if (hospedes[i].documento == documentoHospede) {
+        frigobarExtra = frigobar[i].precoTotal
+    }
+}
+
 const listaHospedes = document.getElementById('lista-hospedes');
 
-// Função para exibir a lista de hóspedes
+// função para exibir a lista de hóspedes
 function exibirHospedes(filtroNome = '', ordenacaoId = 'crescente', ordenacaoNome = 'crescente') {
-    // Limpa a lista atual
     listaHospedes.innerHTML = '';
 
-    // Filtra hóspedes com base nos critérios
+    // filtra os hóspedes
     let filtrados = hospedes.filter(hospede => {
         return filtroNome === '' || hospede.nome.toLowerCase().includes(filtroNome.toLowerCase());
     });
 
-    // Ordena os hóspedes filtrados por ID
+    // ordena os hóspedes filtrados pelo ID
     if (ordenacaoId === 'crescente') {
         filtrados.sort((a, b) => hospedes.indexOf(a) - hospedes.indexOf(b));
     } else {
         filtrados.sort((a, b) => hospedes.indexOf(b) - hospedes.indexOf(a));
     }
 
-    // Adiciona ordenação por Nome
+    // ordena os hóspedes por nome
     if (ordenacaoNome === 'crescente') {
         filtrados.sort((a, b) => a.nome.localeCompare(b.nome));
     } else {
         filtrados.sort((a, b) => b.nome.localeCompare(a.nome));
     }
 
-    // Exibe os hóspedes filtrados
+    // mostra os hóspedes filtrados
     if (filtrados.length > 0) {
         let div = document.getElementById('esconder');
         div.style.display = 'block';
@@ -43,15 +52,17 @@ function exibirHospedes(filtroNome = '', ordenacaoId = 'crescente', ordenacaoNom
 
             // Prepara as informações de reservas
             const reservasInfo = reservasDoHospede.map(reserva => {
-                const listaServicos = reserva.servicos ? reserva.servicos.join(', ') : 'Nenhum serviço';
-                return `Quarto: ${reserva.numeroQuarto}, Check-in: ${reserva.dataCheckin}, Check-out: ${reserva.dataCheckout}, Preço da estadia: R$ ${reserva.precoEstadia}, Serviços: ${listaServicos}`;
+                if (frigobarExtra > 0)
+                {
+                    return `Frigobar: ${frigobarExtra}`
+                }
+                return `Quarto: ${reserva.numeroQuarto}, Check-in: ${reserva.dataCheckin}, Check-out: ${reserva.dataCheckout}, Preço da estadia: R$ ${reserva.precoEstadia}`;
             }).join('<br>') || 'Nenhuma reserva';
 
             // Calcula o total a pagar para o hóspede (soma dos preços das reservas)
             const totalPagar = reservasDoHospede.reduce((total, reserva) => {
                 return total + parseFloat(reserva.precoEstadia || 0); // Certifique-se de que está somando corretamente
             }, 0);
-            console.log(frigobar[index])
             // Adiciona a linha com as novas colunas
             row.innerHTML = `
             <td>${index + 1}</td>
@@ -60,8 +71,6 @@ function exibirHospedes(filtroNome = '', ordenacaoId = 'crescente', ordenacaoNom
             <td>${hospede.endereco}</td>
             <td>${hospede.contato}</td>
             <td>${reservasInfo}</td>
-            <td>${reservas.servicos}</td>
-            <td>R$ ${(totalPagar + frigobar[index].precoTotal).toFixed(2)}</td>
             <td>
                 <button class="btn-remover-hospede" data-documento="${hospede.documento}">Remover</button>
             </td>
@@ -141,6 +150,7 @@ function removerReserva(numeroQuarto) {
         if (confirm('Deseja realmente remover esta reserva?')) {
             reservas.splice(reservaIndex, 1); // Remove a reserva do array
             localStorage.setItem('reservas', JSON.stringify(reservas)); // Atualiza o localStorage
+            localStorage.setItem('logging', JSON.stringify(`Reserva ${reservaIndex} deletada às ${new Date()}`))
             alert('Reserva removida com sucesso.');
             exibirHospedes(); // Atualiza a lista de hóspedes
         }
@@ -182,6 +192,7 @@ document.getElementById('btn-limpar-tudo').addEventListener('click', () => {
         hospedes = [];
         reservas = [];
         frigobar = [];
+        localStorage.setItem('logging', JSON.stringify(`Dados limpos às ${new Date()}`))
         exibirHospedes();
         alert('Todos os dados foram apagados!');
     }
